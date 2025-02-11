@@ -1,0 +1,33 @@
+1. What is ADCS ?
+Active Directory Certificate Services is a Windows Server role for issuing and managing PKI used for secure communication and authentication protocols.
+
+2. What is PKI authentication ?
+This is just another alternate to password authentication. It Employs asymmetric encryption.
+
+3. Interesting Certificate Attributes ?
+Issuer - Issuer for the certificate, the CA's
+validity period - start and end date of the certificate
+Subject - The entity to which the certificate is issued
+Subject Alternative Name - Alternate name the subject may use
+Extended Key Usage - what's the purpose of the certificate 
+
+4. Certicates EKU and OIDs
+– Server Authentication (1.3.6.1.5.5.7.3.1): intended for server authentication, allowing the 
+certificate to be used for authenticating servers in SSL/TLS communication.
+– Client Authentication (1.3.6.1.5.5.7.3.2): allows the certificate to be used for verifying the 
+identity of clients accessing secure services.
+– Code Signing (1.3.6.1.5.5.7.3.3): used for signing executable code, scripts, and macros. It verifies 
+the integrity and authenticity of software or code by ensuring that it hasn't been tampered with 
+since it was signed.
+– Secure Email (1.3.6.1.5.5.7.3.4): used for digitally signing and encrypting email messages, 
+ensuring the confidentiality and integrity of email communications.
+– Encrypting File System (1.3.6.1.4.1.311.10.3.4): allows for the encryption and decryption of files 
+and folders on NTFS volumes
+
+5. Certificate Signin Request:
+![alt text](Signin.png)
+
+Note : Information about the certificate service roles [here](https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/certification-authority-role)
+
+6. AD CS kill Chain
+![alt text](ADCS-KillChain.png)
