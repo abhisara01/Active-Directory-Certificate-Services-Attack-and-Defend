@@ -25,9 +25,9 @@ ensuring the confidentiality and integrity of email communications.
 and folders on NTFS volumes
 
 5. Certificate Signin Request:
-![screenshot of the app](Signin.png)
+![screenshot of the app](Images/Signin.png)
 
 Note : Information about the certificate service roles [here](https://learn.microsoft.com/en-us/windows-server/identity/ad-cs/certification-authority-role)
 
 6. AD CS kill Chain
-![screenshot of the app](ADCS-KillChain.png)
+![screenshot of the app](Images/ADCS-KillChain.png)
