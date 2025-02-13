@@ -31,3 +31,5 @@ Note : Information about the certificate service roles [here](https://learn.micr
 
 6. AD CS kill Chain
 ![screenshot of the app](Images/ADCS-KillChain.png)
+
+.
