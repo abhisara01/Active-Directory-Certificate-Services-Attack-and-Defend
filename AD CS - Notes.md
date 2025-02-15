@@ -115,3 +115,8 @@
      - UnPAC the Hash - [S4U2self](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-sfu/02636893-7a1f-4357-af9a-b672e3e3de13) can be used to impersonate any user including DA.
 
      ![UnPAC the Hash](Images/image.png)
+
+15. CBA Patch
+     - with CBA patch enabled without proper bypass even ESC1 exploitation attempt will fail with event ID 39. 
+     Note: In Full Enforcement AD CS exploitation techniques break ESC6/9/20 but there are bypasses for ESC1/2/3.
+     manually add sid to certificate : [link](https://elkement.art/2023/03/30/lord-of-the-sid-how-to-add-the-objectsid-attribute-to-a-certificate-manually/)
