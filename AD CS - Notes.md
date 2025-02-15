@@ -114,4 +114,4 @@
      - PTC with Schannel
      - UnPAC the Hash - [S4U2self](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-sfu/02636893-7a1f-4357-af9a-b672e3e3de13) can be used to impersonate any user including DA.
 
-     ![UnPAC the Hash](image.png)
+     ![UnPAC the Hash](Images/image.png)
