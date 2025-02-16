@@ -120,3 +120,31 @@
      - with CBA patch enabled without proper bypass even ESC1 exploitation attempt will fail with event ID 39. 
      Note: In Full Enforcement AD CS exploitation techniques break ESC6/9/20 but there are bypasses for ESC1/2/3.
      manually add sid to certificate : [link](https://elkement.art/2023/03/30/lord-of-the-sid-how-to-add-the-objectsid-attribute-to-a-certificate-manually/)
+
+
+# AD CS - Enumeration
+
+Commands to enumerate AD CS in the environment:
+
+1. Look for AD CS containers using the AD Module:
+    ```powershell
+    Get-ADObject -Filter * -SearchBase 'CN=Certification Authorities,CN=Public Key Services,CN=Services,CN=Configuration,DC=cb,DC=corp'
+    ls 'AD:\CN=Certification Authorities,CN=Public Key Services,CN=Services,CN=Configuration,DC=cb,DC=corp'
+    ```
+
+2. Based on ObjectClass:
+    ```powershell
+    Get-ADObject -LDAPFilter '(objectclass=certificationAuthority)' -SearchBase 'CN=Configuration,DC=cb,DC=corp' | fl *
+    ```
+
+3. Enumerate CA:
+    ```powershell
+    Certify.exe cas
+    ```
+
+4. Find Templates:
+    ```powershell
+    Certify.exe find
+    ```
+
+# Offensive Techniques
