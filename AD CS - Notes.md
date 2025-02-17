@@ -1,4 +1,4 @@
-# Notes or CheatSheet
+# Notes
 
 1. What is ADCS?
     - Active Directory Certificate Services is a Windows Server role for issuing and managing PKI used for secure communication and authentication protocols.
@@ -148,3 +148,9 @@ Commands to enumerate AD CS in the environment:
     ```
 
 # Offensive Techniques
+
+1. Local Privilege escalation - CertPotato
+- CertPotato vulnerability primarily abuse virtual accounts to gain a machine account context.
+- tgtdeleg trick to obtain useful TGT to request a certificate as machine account.
+- NO ADMIN RIGHTS NEEDED TO REQUEST tgt FOR MACHING ACCOUNT.
+
