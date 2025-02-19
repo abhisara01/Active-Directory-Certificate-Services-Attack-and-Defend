@@ -154,3 +154,6 @@ Commands to enumerate AD CS in the environment:
 - tgtdeleg trick to obtain useful TGT to request a certificate as machine account.
 - NO ADMIN RIGHTS NEEDED TO REQUEST tgt FOR MACHING ACCOUNT.
 
+Windows Hello for Business
+
+![alt text](image.png)

